@@ -22,11 +22,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return cv
     }()
     
-    let pageController: UIPageControl = {
+    lazy var pageController: UIPageControl = {
         let pc = UIPageControl()
         pc.pageIndicatorTintColor = .lightGray
         pc.currentPageIndicatorTintColor = UIColor(red: 247/255, green: 154/255, blue: 27/255, alpha: 1)
-        pc.numberOfPages = 3
+        pc.numberOfPages = self.pages.count + 1
         return pc
     }()
     
@@ -45,6 +45,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }()
     
     let cellId = "cellId"
+    let loginCellId = "loginCellId"
     
     let pages: [Page] = {
         let firstPage = Page(title: "Share a great listen", message: "It's free to send your books to the people in your life. Every recipient's book is on us.", image: #imageLiteral(resourceName: "page1"))
@@ -52,6 +53,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let thirdPage = Page(title: "Send from the player", message: "Tap the More menu in the upper corner. Choose \"Send this book\"", image: #imageLiteral(resourceName: "page3"))
         return [firstPage,secondPage,thirdPage]
     }()
+    
+    var pageControlBottomAnchor: NSLayoutConstraint?
+    var skipButtonTopAnchor: NSLayoutConstraint?
+    var nextButtonTopAnchor: NSLayoutConstraint?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,22 +67,58 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         view.addSubview(skipButton)
         view.addSubview(nextButton)
         
-        _ = pageController.anchor(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)
+        pageControlBottomAnchor = pageController.anchor(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)[1]
         
-        _ = skipButton.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 16, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 60, heightConstant: 50)
+        skipButtonTopAnchor = skipButton.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 16, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 60, heightConstant: 50).first
         
-        _ = nextButton.anchor(view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 16, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 60, heightConstant: 50)
+        nextButtonTopAnchor = nextButton.anchor(view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 16, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 60, heightConstant: 50).first
+        
         collectionView.anchorToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         
-        collectionView.register(PageCell.self, forCellWithReuseIdentifier: cellId)
+        registerCells()
+        
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let pageNumber = Int(targetContentOffset.pointee.x / view.frame.width)
+        pageController.currentPage = pageNumber
+        print(pageNumber)
+        
+        if pageNumber == pages.count {
+            self.pageControlBottomAnchor?.constant = 40
+            skipButtonTopAnchor?.constant = -40
+            nextButtonTopAnchor?.constant = -40
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
 
+        } else {
+            self.pageControlBottomAnchor?.constant = 0
+            skipButtonTopAnchor?.constant = 16
+            nextButtonTopAnchor?.constant = 16
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
+    
+    fileprivate func registerCells() {
+        collectionView.register(PageCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: loginCellId)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pages.count
+        return pages.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.item == pages.count {
+            let loginCell = collectionView.dequeueReusableCell(withReuseIdentifier: loginCellId, for: indexPath)
+            return loginCell
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PageCell
         
         let page = pages[indexPath.item]
