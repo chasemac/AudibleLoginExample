@@ -15,6 +15,7 @@
 		0E50646C2048CC3600CB93DB /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50646B2048CC3600CB93DB /* PageCell.swift */; };
 		0E50646E2048D1B300CB93DB /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50646D2048D1B300CB93DB /* Page.swift */; };
 		0E7DE4B02048E0A400BB8C89 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7DE4AF2048E0A400BB8C89 /* Extensions.swift */; };
+		0EB85D812049BCFD00846F41 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85D802049BCFD00846F41 /* LoginCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		0E50646B2048CC3600CB93DB /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		0E50646D2048D1B300CB93DB /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		0E7DE4AF2048E0A400BB8C89 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0EB85D802049BCFD00846F41 /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				0E5064652048A61A00CB93DB /* Info.plist */,
 				0E50646D2048D1B300CB93DB /* Page.swift */,
 				0E7DE4AF2048E0A400BB8C89 /* Extensions.swift */,
+				0EB85D802049BCFD00846F41 /* LoginCell.swift */,
 			);
 			path = AudibleLogin;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 				0E50645A2048A61A00CB93DB /* AppDelegate.swift in Sources */,
 				0E50646E2048D1B300CB93DB /* Page.swift in Sources */,
 				0E50646C2048CC3600CB93DB /* PageCell.swift in Sources */,
+				0EB85D812049BCFD00846F41 /* LoginCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
