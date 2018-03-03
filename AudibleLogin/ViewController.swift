@@ -73,9 +73,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     let loginCellId = "loginCellId"
     
     let pages: [Page] = {
-        let firstPage = Page(title: "Share a great listen", message: "It's free to send your books to the people in your life. Every recipient's book is on us.", image: #imageLiteral(resourceName: "page1"))
-        let secondPage = Page(title: "Send from your library", message: "Tap the More menu next to any book. Choose \"Send this book\"", image: #imageLiteral(resourceName: "page2"))
-        let thirdPage = Page(title: "Send from the player", message: "Tap the More menu in the upper corner. Choose \"Send this book\"", image: #imageLiteral(resourceName: "page3"))
+        let firstPage = Page(title: "Share a great listen", message: "It's free to send your books to the people in your life. Every recipient's book is on us.", imageName: "page1")
+        let secondPage = Page(title: "Send from your library", message: "Tap the More menu next to any book. Choose \"Send this book\"", imageName: "page2")
+        let thirdPage = Page(title: "Send from the player", message: "Tap the More menu in the upper corner. Choose \"Send this book\"", imageName: "page3")
         return [firstPage,secondPage,thirdPage]
     }()
     
@@ -107,11 +107,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     fileprivate func observeKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keybaordShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keybaordHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    @objc func keybaordHide() {
+    @objc func keyboardHide() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
             self.view.frame = CGRect(x: 0, y:  0, width: self.view.frame.width, height: self.view.frame.height)
@@ -119,10 +119,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }, completion: nil)
     }
     
-    @objc func keybaordShow() {
+    @objc func keyboardShow() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
-            self.view.frame = CGRect(x: 0, y:  -50, width: self.view.frame.width, height: self.view.frame.height)
+            let y: CGFloat = UIDevice.current.orientation.isLandscape ? -100 : -50
+            self.view.frame = CGRect(x: 0, y:  y, width: self.view.frame.width, height: self.view.frame.height)
             
         }, completion: nil)
     }
@@ -181,6 +182,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: view.frame.height)
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        print(UIDevice.current.orientation.isLandscape)
+        
+        collectionView.collectionViewLayout.invalidateLayout()
+        
+        let indexPath = IndexPath(item: pageController.currentPage, section: 0)
+        //scroll to indexpath after the rotation is going
+        DispatchQueue.main.async {
+            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            self.collectionView.reloadData()
+        }
     }
 
 }

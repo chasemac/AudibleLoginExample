@@ -11,5 +11,5 @@ import UIKit
 struct Page {
     let title: String
     let message: String
-    let image: UIImage
+    let imageName: String
 }
