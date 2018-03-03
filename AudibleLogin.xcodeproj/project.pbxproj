@@ -8,20 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		0E50645A2048A61A00CB93DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5064592048A61A00CB93DB /* AppDelegate.swift */; };
-		0E50645C2048A61A00CB93DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50645B2048A61A00CB93DB /* ViewController.swift */; };
+		0E50645C2048A61A00CB93DB /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50645B2048A61A00CB93DB /* LoginController.swift */; };
 		0E50645F2048A61A00CB93DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50645D2048A61A00CB93DB /* Main.storyboard */; };
 		0E5064612048A61A00CB93DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E5064602048A61A00CB93DB /* Assets.xcassets */; };
 		0E5064642048A61A00CB93DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E5064622048A61A00CB93DB /* LaunchScreen.storyboard */; };
 		0E50646C2048CC3600CB93DB /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50646B2048CC3600CB93DB /* PageCell.swift */; };
 		0E50646E2048D1B300CB93DB /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50646D2048D1B300CB93DB /* Page.swift */; };
 		0E7DE4B02048E0A400BB8C89 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7DE4AF2048E0A400BB8C89 /* Extensions.swift */; };
+		0E9B391A204A1F8700748BB0 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9B3919204A1F8700748BB0 /* MainNavigationController.swift */; };
 		0EB85D812049BCFD00846F41 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85D802049BCFD00846F41 /* LoginCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E5064562048A61A00CB93DB /* AudibleLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudibleLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E5064592048A61A00CB93DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0E50645B2048A61A00CB93DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0E50645B2048A61A00CB93DB /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		0E50645E2048A61A00CB93DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E5064602048A61A00CB93DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E5064632048A61A00CB93DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -29,6 +30,7 @@
 		0E50646B2048CC3600CB93DB /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		0E50646D2048D1B300CB93DB /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		0E7DE4AF2048E0A400BB8C89 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0E9B3919204A1F8700748BB0 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		0EB85D802049BCFD00846F41 /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				0E5064592048A61A00CB93DB /* AppDelegate.swift */,
-				0E50645B2048A61A00CB93DB /* ViewController.swift */,
+				0E50645B2048A61A00CB93DB /* LoginController.swift */,
 				0E50646B2048CC3600CB93DB /* PageCell.swift */,
 				0E50645D2048A61A00CB93DB /* Main.storyboard */,
 				0E5064602048A61A00CB93DB /* Assets.xcassets */,
@@ -72,6 +74,7 @@
 				0E50646D2048D1B300CB93DB /* Page.swift */,
 				0E7DE4AF2048E0A400BB8C89 /* Extensions.swift */,
 				0EB85D802049BCFD00846F41 /* LoginCell.swift */,
+				0E9B3919204A1F8700748BB0 /* MainNavigationController.swift */,
 			);
 			path = AudibleLogin;
 			sourceTree = "<group>";
@@ -149,9 +152,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E7DE4B02048E0A400BB8C89 /* Extensions.swift in Sources */,
-				0E50645C2048A61A00CB93DB /* ViewController.swift in Sources */,
+				0E50645C2048A61A00CB93DB /* LoginController.swift in Sources */,
 				0E50645A2048A61A00CB93DB /* AppDelegate.swift in Sources */,
 				0E50646E2048D1B300CB93DB /* Page.swift in Sources */,
+				0E9B391A204A1F8700748BB0 /* MainNavigationController.swift in Sources */,
 				0E50646C2048CC3600CB93DB /* PageCell.swift in Sources */,
 				0EB85D812049BCFD00846F41 /* LoginCell.swift in Sources */,
 			);
